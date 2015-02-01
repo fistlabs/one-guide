@@ -8,19 +8,7 @@ _Configs are built-in and not customizable._
 
 OneGuide provides 3 interfaces:
 
-##[Gulp](http://gulpjs.com/) plugin
-
-```js
-var oneGuidePipe = require('one-guide/plugins/gulp');
-gulp.task('lint', function () {
-    return this.src([
-        'lib/**/*.js'
-    ]).pipe(oneGuidePipe({
-        root: process.cwd(),
-        excludes: lintConf.excludes
-    }));
-});
-```
+##[Gulp](http://gulpjs.com/) [plugin](https://www.npmjs.com/package/gulp-one-guide)
 
 ##[Grunt](http://gruntjs.com/) plugin
 
