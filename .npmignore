@@ -3,6 +3,5 @@
 /tools
 /test
 /Gulpfile.js
-/Gruntfile.js
 /.*
 *.log

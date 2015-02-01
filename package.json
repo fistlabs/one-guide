@@ -7,7 +7,6 @@
     "Golyshev Dmitrii <golyshev.dmitry@yandex.ru>"
   ],
   "dependencies": {
-    "gulp-util": "3.0.2",
     "commander": "2.6.0",
     "colors": "~1.0.3",
     "inherit": "2.2.2",
@@ -18,13 +17,8 @@
     "vow-fs": "0.3.4",
     "minimatch": "2.0.1"
   },
-  "peerDependencies": {
-    "grunt": ">= 0.4.5 && <= 1"
-  },
   "devDependencies": {
     "gulp-one-guide": "0.0.1",
-    "grunt-cli": "0.1.13",
-    "grunt": ">= 0.4.5 && <= 1",
     "glob": "4.3.5",
     "gulp": ">= 3.8.10 && <= 4",
     "gulp-mocha": "2.0.0",

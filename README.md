@@ -6,31 +6,16 @@ OneGuide is a tool that wraps jscs and eslint and provides an issues in one form
 
 _Configs are built-in and not customizable._
 
-OneGuide provides 3 interfaces:
-
-##[Gulp](http://gulpjs.com/) [plugin](https://www.npmjs.com/package/gulp-one-guide)
-
-##[Grunt](http://gruntjs.com/) plugin
-
-```js
-grunt.registerTask('lint', 'Lint\'N\'Style JavaScript', require('one-guide/plugins/grunt'));
-    
-grunt.initConfig({
-    lint: {
-        options: {
-            root: process.cwd(),
-            patterns: ['lib/**/*.js', 'test/**/*.js'],
-            excludes: ['test/fixtures/**']
-        }
-    }
-});
-```
-
 ##Cli tool
 
 ```bash
 $ one-guide "lib/**/*.js" "test/**/*.js" -I "test/fixtures/**"
 ```
+
+##Plugins
+
+* [Gulp](http://gulpjs.com/) [plugin](https://www.npmjs.com/package/gulp-one-guide)
+* [Grunt](http://gruntjs.com/) [https://www.npmjs.com/package/grunt-one-guide]
 
 ---------
 LICENSE [MIT](LICENSE)
