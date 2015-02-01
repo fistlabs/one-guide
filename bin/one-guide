@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+'use strict';
+
+var cli = require('../lib/cli');
+var program = require('commander');
+
+function collect(value, values) {
+    values.push(value);
+    return values;
+}
+
+program.version(require('../package.json').version).
+    usage('[options] "<glob...>" or <file...>').
+    option('-I, --ignore "<glob>" or <file>', 'exclude pattern or filename', collect, []).
+    parse(process.argv);
+
+cli(program.args, program.ignore).done(process.exit);
