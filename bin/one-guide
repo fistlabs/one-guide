@@ -12,6 +12,7 @@ function collect(value, values) {
 program.version(require('../package.json').version).
     usage('[options] "<glob...>" or <file...>').
     option('-I, --ignore "<glob>" or <file>', 'exclude pattern or filename', collect, []).
+    option('-c, --config [config]', 'configuration setup', 'default').
     parse(process.argv);
 
-cli(program.args, program.ignore).done(process.exit);
+cli(program.config, program.args, program.ignore).done(process.exit);
