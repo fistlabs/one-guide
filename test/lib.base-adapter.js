@@ -9,6 +9,11 @@ describe('lib/base-adapter', function () {
             assert.strictEqual(typeof BaseAdapter, 'function');
         });
     });
+    describe('BaseAdapter.adapterName', function () {
+        it('Should have name "base"', function () {
+            assert.strictEqual(BaseAdapter.adapterName, 'base');
+        });
+    });
     describe('adapter.params', function () {
         it('Should take params as argument', function () {
             var adapter = new BaseAdapter({foo: 'bar'});

@@ -13,6 +13,11 @@ describe('lib/eslint-adapter', function () {
             assert.strictEqual(typeof EslintAdapter, 'function');
         });
     });
+    describe('EslintAdapter.adapterName', function () {
+        it('Should have name "eslint"', function () {
+            assert.strictEqual(EslintAdapter.adapterName, 'eslint');
+        });
+    });
     describe('adapter.config', function () {
         it('Should create eslint config', function () {
             var adapter = new EslintAdapter({

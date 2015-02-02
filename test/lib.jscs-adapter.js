@@ -15,6 +15,11 @@ describe('lib/jscs-adapter', function () {
             assert.strictEqual(typeof JscsAdapter, 'function');
         });
     });
+    describe('JscsAdapter.adapterName', function () {
+        it('Should have name "jscs"', function () {
+            assert.strictEqual(JscsAdapter.adapterName, 'jscs');
+        });
+    });
     describe('adapter.jscsChecker', function () {
         it('Should create eslint config', function () {
             var adapter = new JscsAdapter({

@@ -23,17 +23,11 @@ describe('lib/one-guide', function () {
             var guide = new OneGuide();
             assert.ok(Array.isArray(guide.adapters));
         });
-        it('Should automatically add adapters by kwargs.adapters', function () {
-            var guide = new OneGuide({
-                adapters: [
-                    {
-                        Class: require.resolve('../lib/base-adapter'),
-                        configFile: path.join(__dirname, '../package.json')
-                    }
-                ]
-            });
-            assert.strictEqual(guide.adapters.length, 1);
+        it('Should automatically add adapters', function () {
+            var guide = new OneGuide();
+            assert.strictEqual(guide.adapters.length, 2);
             assert.ok(guide.adapters[0] instanceof BaseAdapter);
+            assert.ok(guide.adapters[1] instanceof BaseAdapter);
         });
     });
     describe('guide.issues', function () {
@@ -55,9 +49,8 @@ describe('lib/one-guide', function () {
             assert.notStrictEqual(guide.params, params);
         });
         it('Should provide defaults', function () {
-            var guide = new OneGuide({});
+            var guide = new OneGuide();
             assert.strictEqual(guide.params.root, process.cwd());
-            assert.deepEqual(guide.params.adapters, []);
             assert.deepEqual(guide.params.excludes, []);
         });
     });
@@ -65,11 +58,10 @@ describe('lib/one-guide', function () {
         it('Should add adapter by  configuration', function () {
             var guide = new OneGuide();
             guide.addAdapter({
-                Class: require.resolve('../lib/base-adapter'),
-                configFile: path.join(__dirname, '../package.json')
+                Class: require.resolve('../lib/base-adapter')
             });
-            assert.strictEqual(guide.adapters.length, 1);
-            assert.ok(guide.adapters[0] instanceof BaseAdapter);
+            assert.strictEqual(guide.adapters.length, 3);
+            assert.ok(guide.adapters[2] instanceof BaseAdapter);
         });
     });
     describe('guide.isFilenameExcluded()', function () {
