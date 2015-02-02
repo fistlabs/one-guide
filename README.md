@@ -15,7 +15,7 @@ $ one-guide "lib/**/*.js" "test/**/*.js" -I "test/fixtures/**"
 ##Plugins
 
 * [Gulp](http://gulpjs.com/) [plugin](https://www.npmjs.com/package/gulp-one-guide)
-* [Grunt](http://gruntjs.com/) [https://www.npmjs.com/package/grunt-one-guide]
+* [Grunt](http://gruntjs.com/) [plugin](https://www.npmjs.com/package/grunt-one-guide)
 
 ---------
 LICENSE [MIT](LICENSE)
