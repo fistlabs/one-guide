@@ -8,7 +8,7 @@ var path = require('path');
 
 describe('lib/jscs-adapter', function () {
     var JscsAdapter = require('../lib/jscs-adapter');
-    var configFile = path.join(__dirname, '../lib/configs/.jscsrc');
+    var configFile = path.join(__dirname, '../lib/configs/default/.jscsrc');
 
     describe('JscsAdapter()', function () {
         it('Should be a function', function () {
