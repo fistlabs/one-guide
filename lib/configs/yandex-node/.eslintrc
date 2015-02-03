@@ -1,16 +1,10 @@
 {
   "env": {
     "mocha": true,
-    "browser": true,
-    "node": true,
-    "amd": false
+    "node": true
   },
 
-  "globals": {
-    "BEM": true,
-    "BEMHTML": true,
-    "$": true
-  },
+  "globals": {},
 
   "rules": {
     "no-comma-dangle": 2,

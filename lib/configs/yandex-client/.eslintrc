@@ -1,12 +1,13 @@
 {
   "env": {
-    "mocha": true,
-    "browser": true,
-    "node": true,
-    "amd": false
+    "browser": true
   },
 
-  "globals": {},
+  "globals": {
+    "BEM": true,
+    "BEMHTML": true,
+    "$": true
+  },
 
   "rules": {
     "no-comma-dangle": 2,
@@ -86,7 +87,7 @@
 
     "no-global-strict": 0,
     "no-extra-strict": 0,
-    "strict": 2,
+    "strict": 0,
 
     "no-catch-shadow": 2,
     "no-delete-var": 2,
