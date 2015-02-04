@@ -7,7 +7,7 @@ var path = require('path');
 function hasAdapter(adapters, adapterName, confName) {
     var adapter = _.find(adapters, {
         Class: path.join(__dirname, '../lib/', adapterName),
-        configFile: path.join(__dirname, '../lib/configs/', confName)
+        configFile: path.join(__dirname, '../lib/configs/yandex-node/', confName)
     });
     return Boolean(adapter);
 }

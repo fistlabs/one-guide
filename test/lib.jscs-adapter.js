@@ -8,11 +8,16 @@ var path = require('path');
 
 describe('lib/jscs-adapter', function () {
     var JscsAdapter = require('../lib/jscs-adapter');
-    var configFile = path.join(__dirname, '../lib/configs/.jscsrc');
+    var configFile = path.join(__dirname, '../lib/configs/yandex-node/.jscsrc');
 
     describe('JscsAdapter()', function () {
         it('Should be a function', function () {
             assert.strictEqual(typeof JscsAdapter, 'function');
+        });
+    });
+    describe('JscsAdapter.adapterName', function () {
+        it('Should have name "jscs"', function () {
+            assert.strictEqual(JscsAdapter.adapterName, 'jscs');
         });
     });
     describe('adapter.jscsChecker', function () {

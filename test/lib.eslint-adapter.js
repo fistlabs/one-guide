@@ -6,11 +6,16 @@ var fs = require('fs');
 
 describe('lib/eslint-adapter', function () {
     var EslintAdapter = require('../lib/eslint-adapter');
-    var configFile = path.join(__dirname, '../lib/configs/.eslintrc');
+    var configFile = path.join(__dirname, '../lib/configs/yandex-node/.eslintrc');
 
     describe('EslintAdapter()', function () {
         it('Should be a function', function () {
             assert.strictEqual(typeof EslintAdapter, 'function');
+        });
+    });
+    describe('EslintAdapter.adapterName', function () {
+        it('Should have name "eslint"', function () {
+            assert.strictEqual(EslintAdapter.adapterName, 'eslint');
         });
     });
     describe('adapter.config', function () {

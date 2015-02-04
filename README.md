@@ -8,8 +8,22 @@ _Configs are built-in and not customizable._
 
 ##Cli tool
 
+Pass direct file or glob pattern in quotes to check files.
+
 ```bash
-$ one-guide "lib/**/*.js" "test/**/*.js" -I "test/fixtures/**"
+$ one-guide "lib/**/*.js"
+```
+
+Pass `-I` or `--ignore` to provide exclusions
+
+```bash
+$ one-guide "lib/**/*.js" --ignore "lib/**/*.built.js"
+```
+
+Pass `-c` or `--config` to provide one of build-in configurations
+
+```bash
+$ one-guide "lib/**/*.js" --config yandex-node
 ```
 
 ##Plugins
