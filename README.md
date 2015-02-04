@@ -23,7 +23,7 @@ $ one-guide "lib/**/*.js" --ignore "lib/**/*.built.js"
 Pass `-c` or `--config` to provide one of build-in configurations
 
 ```bash
-$ one-guide "lib/**/*.js" --config yandex
+$ one-guide "lib/**/*.js" --config yandex-node
 ```
 
 ##Plugins
