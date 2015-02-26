@@ -31,7 +31,7 @@ describe('lib/jscs-adapter', function () {
     describe('adapter.findFileIssues()', function () {
         it('Should find an issue', function () {
             var adapter = new JscsAdapter({
-                configFile: configFile
+                config: JscsAdapter.loadConfig(configFile)
             });
             var filename = path.join(__dirname, 'fixtures/invalid.js');
             var content = fs.readFileSync(filename, 'utf-8');
@@ -44,7 +44,7 @@ describe('lib/jscs-adapter', function () {
                 rule: 'foo'
             };
             var adapter = new JscsAdapter({
-                configFile: configFile
+                config: JscsAdapter.loadConfig(configFile)
             });
             issue = adapter.formatFileIssue(issue);
             assert.strictEqual(issue.severity, 1);

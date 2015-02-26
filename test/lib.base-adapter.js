@@ -1,6 +1,9 @@
 'use strict';
 
 var assert = require('assert');
+var inherit = require('inherit');
+
+exports.id = 'foobar';
 
 describe('lib/base-adapter', function () {
     var BaseAdapter = require('../lib/base-adapter');
@@ -16,15 +19,34 @@ describe('lib/base-adapter', function () {
     });
     describe('adapter.params', function () {
         it('Should take params as argument', function () {
-            var adapter = new BaseAdapter({foo: 'bar'});
+            var BaseAdapter2 = inherit(BaseAdapter, {
+                loadConfig: function () {}
+            });
+            var adapter = new BaseAdapter2({foo: 'bar'});
             assert.ok(adapter.params);
             assert.strictEqual(typeof adapter.params, 'object');
         });
         it('Should be a shallow copy of object', function () {
             var kwargs = {foo: 'bar'};
-            var adapter = new BaseAdapter(kwargs);
+            var BaseAdapter2 = inherit(BaseAdapter, {
+                loadConfig: function () {}
+            });
+            var adapter = new BaseAdapter2(kwargs);
             assert.deepEqual(adapter.params, kwargs);
             assert.notStrictEqual(adapter.params, kwargs);
+        });
+    });
+    describe('adapter.config', function () {
+        it('Should clone params.config to adapter.config', function () {
+            var config = {
+                x: 42
+            };
+            var adapter = new BaseAdapter({
+                config: config
+            });
+            assert.ok(adapter.config);
+            assert.deepEqual(adapter.config, config);
+            assert.notStrictEqual(adapter.config, config);
         });
     });
     describe('adapter.findFileIssues()', function () {
@@ -46,6 +68,15 @@ describe('lib/base-adapter', function () {
             var issue = {};
             var adapter = new BaseAdapter();
             assert.strictEqual(adapter.formatFileIssue(issue), issue);
+        });
+    });
+    describe('BaseAdapter.loadConfig()', function () {
+        it('Should be a function', function () {
+            assert.strictEqual(typeof BaseAdapter.loadConfig, 'function');
+        });
+        it('Should just require filename', function () {
+            var conf = BaseAdapter.loadConfig(__filename);
+            assert.strictEqual(conf.id, exports.id);
         });
     });
 });

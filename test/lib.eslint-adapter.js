@@ -30,7 +30,7 @@ describe('lib/eslint-adapter', function () {
     describe('adapter.findFileIssues()', function () {
         it('Should find an issue', function () {
             var adapter = new EslintAdapter({
-                configFile: configFile
+                config: EslintAdapter.loadConfig(configFile)
             });
             var filename = path.join(__dirname, 'fixtures/invalid.js');
             var content = fs.readFileSync(filename, 'utf-8');
