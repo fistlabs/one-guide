@@ -77,6 +77,35 @@ describe('lib/one-guide', function () {
                 foo: 'bar'
             });
         });
+        it('Should have an ability to override adapter config', function () {
+            var guide = new OneGuide({
+                override: {
+                    base: {
+                        bar: 'baz'
+                    }
+                }
+            });
+            var baseLoad = require('../lib/base-adapter').loadConfig;
+
+            require('../lib/base-adapter').loadConfig = function (configFile) {
+                if (configFile === path.join(__dirname, '../lib/configs/yandex-node/.baserc')) {
+                    return {
+                        foo: 'bar'
+                    };
+                }
+            };
+
+            guide.addAdapter({
+                Class: require.resolve('../lib/base-adapter')
+            });
+            require('../lib/base-adapter').loadConfig = baseLoad;
+            assert.strictEqual(guide.adapters.length, 3);
+            assert.ok(guide.adapters[2] instanceof BaseAdapter);
+            assert.deepEqual(guide.adapters[2].config, {
+                foo: 'bar',
+                bar: 'baz'
+            });
+        });
     });
     describe('guide.isFilenameExcluded()', function () {
         it('Should return true if the given filename matches at least one exclude', function () {
