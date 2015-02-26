@@ -37,72 +37,45 @@ describe('lib/base-adapter', function () {
         });
     });
     describe('adapter.config', function () {
-        it('Should auto load config by configFile', function () {
-            var spy = [];
-            var BaseAdapter2 = inherit(BaseAdapter, {
-                loadConfig: function (configFile) {
-                    spy.push('loaded');
-                    assert.strictEqual(configFile, 'foo/bar');
-                    return {
-                        foo: 'bar'
-                    };
-                }
-            });
-            var adapter = new BaseAdapter2({
-                configFile: 'foo/bar'
+        it('Should clone params.config to adapter.config', function () {
+            var config = {
+                x: 42
+            };
+            var adapter = new BaseAdapter({
+                config: config
             });
             assert.ok(adapter.config);
-            assert.deepEqual(adapter.config, {
-                foo: 'bar'
-            });
+            assert.deepEqual(adapter.config, config);
+            assert.notStrictEqual(adapter.config, config);
         });
     });
     describe('adapter.findFileIssues()', function () {
         it('Should be a function', function () {
-            var BaseAdapter2 = inherit(BaseAdapter, {
-                loadConfig: function () {}
-            });
-            var adapter = new BaseAdapter2();
+            var adapter = new BaseAdapter();
             assert.strictEqual(typeof adapter.findFileIssues, 'function');
         });
         it('Should return Array', function () {
-            var BaseAdapter2 = inherit(BaseAdapter, {
-                loadConfig: function () {}
-            });
-            var adapter = new BaseAdapter2();
+            var adapter = new BaseAdapter();
             assert.ok(Array.isArray(adapter.findFileIssues()));
         });
     });
     describe('adapter.formatFileIssue()', function () {
         it('Should be a function', function () {
-            var BaseAdapter2 = inherit(BaseAdapter, {
-                loadConfig: function () {}
-            });
-            var adapter = new BaseAdapter2();
+            var adapter = new BaseAdapter();
             assert.strictEqual(typeof adapter.formatFileIssue, 'function');
         });
         it('Should return given object', function () {
             var issue = {};
-            var BaseAdapter2 = inherit(BaseAdapter, {
-                loadConfig: function () {}
-            });
-            var adapter = new BaseAdapter2();
+            var adapter = new BaseAdapter();
             assert.strictEqual(adapter.formatFileIssue(issue), issue);
         });
     });
-    describe('adapter.loadConfig()', function () {
+    describe('BaseAdapter.loadConfig()', function () {
         it('Should be a function', function () {
-            var adapter = new BaseAdapter({
-                configFile: __filename
-            });
-            assert.strictEqual(typeof adapter.loadConfig, 'function');
+            assert.strictEqual(typeof BaseAdapter.loadConfig, 'function');
         });
         it('Should just require filename', function () {
-            var adapter = new BaseAdapter({
-                configFile: __filename
-            });
-            var conf = adapter.loadConfig(__filename);
-            assert.strictEqual(conf.id, adapter.config.id);
+            var conf = BaseAdapter.loadConfig(__filename);
             assert.strictEqual(conf.id, exports.id);
         });
     });

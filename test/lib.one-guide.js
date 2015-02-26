@@ -55,16 +55,12 @@ describe('lib/one-guide', function () {
         });
     });
     describe('guide.addAdapter()', function () {
-        it('Should add adapter by  configuration', function () {
+        it('Should add adapter by configuration', function () {
             var guide = new OneGuide();
-            var baseLoad = require('../lib/base-adapter').prototype.loadConfig;
-            guide.getConfigFilename = function (adapterName) {
-                if (adapterName === 'base') {
-                    return 'foo/bar';
-                }
-            };
-            require('../lib/base-adapter').prototype.loadConfig = function (configFile) {
-                if (configFile === 'foo/bar') {
+            var baseLoad = require('../lib/base-adapter').loadConfig;
+
+            require('../lib/base-adapter').loadConfig = function (configFile) {
+                if (configFile === path.join(__dirname, '../lib/configs/yandex-node/.baserc')) {
                     return {
                         foo: 'bar'
                     };
@@ -74,7 +70,7 @@ describe('lib/one-guide', function () {
             guide.addAdapter({
                 Class: require.resolve('../lib/base-adapter')
             });
-            require('../lib/base-adapter').prototype.loadConfig = baseLoad;
+            require('../lib/base-adapter').loadConfig = baseLoad;
             assert.strictEqual(guide.adapters.length, 3);
             assert.ok(guide.adapters[2] instanceof BaseAdapter);
             assert.deepEqual(guide.adapters[2].config, {
