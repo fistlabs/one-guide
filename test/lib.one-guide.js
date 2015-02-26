@@ -57,11 +57,29 @@ describe('lib/one-guide', function () {
     describe('guide.addAdapter()', function () {
         it('Should add adapter by  configuration', function () {
             var guide = new OneGuide();
+            var baseLoad = require('../lib/base-adapter').prototype.loadConfig;
+            guide.getConfigFilename = function (adapterName) {
+                if (adapterName === 'base') {
+                    return 'foo/bar';
+                }
+            };
+            require('../lib/base-adapter').prototype.loadConfig = function (configFile) {
+                if (configFile === 'foo/bar') {
+                    return {
+                        foo: 'bar'
+                    };
+                }
+            };
+
             guide.addAdapter({
                 Class: require.resolve('../lib/base-adapter')
             });
+            require('../lib/base-adapter').prototype.loadConfig = baseLoad;
             assert.strictEqual(guide.adapters.length, 3);
             assert.ok(guide.adapters[2] instanceof BaseAdapter);
+            assert.deepEqual(guide.adapters[2].config, {
+                foo: 'bar'
+            });
         });
     });
     describe('guide.isFilenameExcluded()', function () {
