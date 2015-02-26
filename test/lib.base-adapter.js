@@ -2,6 +2,8 @@
 
 var assert = require('assert');
 
+exports.id = 'foobar';
+
 describe('lib/base-adapter', function () {
     var BaseAdapter = require('../lib/base-adapter');
     describe('BaseAdapter()', function () {
@@ -46,6 +48,17 @@ describe('lib/base-adapter', function () {
             var issue = {};
             var adapter = new BaseAdapter();
             assert.strictEqual(adapter.formatFileIssue(issue), issue);
+        });
+    });
+    describe('adapter.loadConfig()', function () {
+        it('Should be a function', function () {
+            var adapter = new BaseAdapter();
+            assert.strictEqual(typeof adapter.loadConfig, 'function');
+        });
+        it('Should just require filename', function () {
+            var adapter = new BaseAdapter();
+            var conf = adapter.loadConfig(__filename);
+            assert.strictEqual(conf.id, exports.id);
         });
     });
 });
