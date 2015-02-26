@@ -11,18 +11,18 @@
     "colors": "~1.0.3",
     "inherit": "2.2.2",
     "vow": "0.4.8",
-    "jscs": "1.10.0",
-    "eslint": "0.13.0",
-    "lodash-node": "3.0.1",
+    "jscs": "1.11.3",
+    "eslint": "0.15.0",
+    "lodash-node": "3.3.1",
     "vow-fs": "0.3.4",
     "minimatch": "2.0.1"
   },
   "devDependencies": {
     "gulp-one-guide": "0.0.1",
-    "glob": "4.3.5",
-    "gulp": ">= 3.8.10 && <= 4",
+    "glob": "4.4.0",
+    "gulp": ">= 3.8.11 && <= 4",
     "gulp-mocha": "2.0.0",
-    "gulp-istanbul": "0.5.0"
+    "gulp-istanbul": "0.6.0"
   },
   "description": "One style guide for javascript",
   "license": "MIT",
