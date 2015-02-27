@@ -79,4 +79,23 @@ describe('lib/base-adapter', function () {
             assert.strictEqual(conf.id, exports.id);
         });
     });
+    describe('BaseAdapter.mergeConfigs', function () {
+        it('Should be a function', function () {
+            assert.strictEqual(typeof BaseAdapter.mergeConfigs, 'function');
+        });
+        it('Should extent c1 but no mutate', function () {
+            var c1 = {
+                foo: 1
+            };
+            var c2 = {
+                bar: 2
+            };
+            var conf = BaseAdapter.mergeConfigs(c1, c2);
+            assert.notStrictEqual(c1, conf);
+            assert.deepEqual(conf, {
+                foo: 1,
+                bar: 2
+            });
+        });
+    });
 });

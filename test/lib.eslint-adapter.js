@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash-node');
 var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
@@ -54,6 +55,48 @@ describe('lib/eslint-adapter', function () {
             assert.strictEqual(issue.source, void 0);
             assert.strictEqual(issue.ruleId, void 0);
             assert.strictEqual(issue.filename, 'path/to/file');
+        });
+    });
+    describe('mergeConfigs()', function () {
+        it('Should be a function', function () {
+            assert.strictEqual(typeof EslintAdapter.mergeConfigs, 'function');
+        });
+        it('Should merge sub configs', function () {
+            var c1 = {
+                sub1: {
+                    foo: 'bar'
+                },
+                sub2: {
+                    bar: 'baz'
+                }
+            };
+            var c1c = _.cloneDeep(c1);
+            var c2 = {
+                sub1: {
+                    foo: 'baz'
+                },
+                sub2: {
+                    baz: 'zot'
+                },
+                sub3: {
+                    moo: 'boo'
+                }
+            };
+            var conf = EslintAdapter.mergeConfigs(c1, c2);
+            assert.notStrictEqual(c1, conf);
+            assert.deepEqual(conf, {
+                sub1: {
+                    foo: 'baz'
+                },
+                sub2: {
+                    bar: 'baz',
+                    baz: 'zot'
+                },
+                sub3: {
+                    moo: 'boo'
+                }
+            });
+            assert.deepEqual(c1, c1c);
         });
     });
 });
